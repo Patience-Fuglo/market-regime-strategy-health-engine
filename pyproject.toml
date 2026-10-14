@@ -6,17 +6,21 @@ build-backend = "setuptools.build_meta"
 name = "market-regime-strategy-health-engine"
 version = "0.1.0"
 description = "Point-in-time market regime classification and strategy health diagnostics: regime features, strategy performance monitoring, signal health, regime-conditioned diagnostics, and root-cause alerting"
-requires-python = ">=3.9"
+requires-python = ">=3.9,<3.13"
 dependencies = [
-    "pandas>=2.0",
-    "numpy>=1.23",
-    "pyyaml>=6.0",
-    "alpha-validation-toolkit @ git+https://github.com/Patience-Fuglo/alpha-validation-toolkit.git",
-    "factor-model-engine @ git+https://github.com/Patience-Fuglo/factor-model-engine.git",
-    "portfolio-construction-engine @ git+https://github.com/Patience-Fuglo/portfolio-construction-engine.git",
-    "portfolio-risk-engine @ git+https://github.com/Patience-Fuglo/portfolio-risk-engine.git",
-    "transaction-cost-engine @ git+https://github.com/Patience-Fuglo/transaction-cost-engine.git",
+    "pandas>=2.0,<4.0",
+    "numpy>=1.23,<3.0",
+    "pyyaml>=6.0,<7.0",
+    "alpha-validation-toolkit @ git+https://github.com/Patience-Fuglo/alpha-validation-toolkit.git@6d2b375f47fc7045d0c4cdb25ae90c9ebd97630d",
+    "factor-model-engine @ git+https://github.com/Patience-Fuglo/factor-model-engine.git@0b9cc0fd7fea8d940080e8210185f370d4a39bc1",
+    "portfolio-construction-engine @ git+https://github.com/Patience-Fuglo/portfolio-construction-engine.git@678cc6c68ca2cc339e4e968db7065ea9b71388d3",
 ]
+# portfolio-risk-engine and transaction-cost-engine were previously
+# declared here but never actually imported anywhere in src/, tests/,
+# or scripts/ (confirmed via grep) -- removed during a portfolio-wide
+# dependency reproducibility audit, the same real defect already
+# found and fixed in portfolio-risk-engine and transaction-cost-engine
+# themselves earlier in this build.
 
 [project.optional-dependencies]
 dev = ["pytest>=7.4"]
