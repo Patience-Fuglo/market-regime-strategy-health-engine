@@ -1,0 +1,45 @@
+# Engine-wide configuration. Every field tagged RESEARCH ASSUMPTION in
+# docs/research_assumptions.md needs the researcher's explicit sign-off --
+# these are modeling choices, not safe engineering defaults.
+
+run:
+  output_dir: "outputs"
+  random_seed: 1337
+
+regime:
+  volatility_window: 12                   # RESEARCH ASSUMPTION
+  trend_window: 12                        # RESEARCH ASSUMPTION
+  correlation_window: 12                  # RESEARCH ASSUMPTION
+  liquidity_window: 6                     # RESEARCH ASSUMPTION
+  min_periods_for_classification: 12      # RESEARCH ASSUMPTION
+  high_vol_threshold: 0.06                # RESEARCH ASSUMPTION
+  low_vol_threshold: 0.03                 # RESEARCH ASSUMPTION
+  trend_threshold: 0.05                   # RESEARCH ASSUMPTION
+  high_correlation_threshold: 0.45        # RESEARCH ASSUMPTION
+  liquidity_stress_threshold: -0.20       # RESEARCH ASSUMPTION
+
+strategy_health:
+  rolling_sharpe_window: 12                # RESEARCH ASSUMPTION
+  min_periods_for_rolling_sharpe: 6        # RESEARCH ASSUMPTION
+
+signal_health:
+  rolling_ic_window: 12                     # RESEARCH ASSUMPTION
+  rolling_ic_min_periods: 6                 # RESEARCH ASSUMPTION
+  decay_horizons: [1, 3, 6, 12]              # RESEARCH ASSUMPTION
+  min_observations_for_reliable_ic: 24       # RESEARCH ASSUMPTION
+
+diagnostics:
+  exposure_drift_threshold: 0.15             # RESEARCH ASSUMPTION
+  cost_deterioration_pct_threshold: 0.25     # RESEARCH ASSUMPTION
+
+alerts:
+  drawdown_warning: 0.10                      # RESEARCH ASSUMPTION
+  drawdown_critical: 0.20                     # RESEARCH ASSUMPTION
+  rolling_sharpe_warning: 0.0                 # RESEARCH ASSUMPTION
+  rolling_sharpe_critical: -0.5                # RESEARCH ASSUMPTION
+  signal_ic_warning: 0.01                       # RESEARCH ASSUMPTION
+  signal_ic_critical: 0.0                        # RESEARCH ASSUMPTION
+  exposure_drift_warning: 0.15                    # RESEARCH ASSUMPTION
+  exposure_drift_critical: 0.30                    # RESEARCH ASSUMPTION
+  cost_deterioration_warning_pct: 0.25              # RESEARCH ASSUMPTION
+  cost_deterioration_critical_pct: 0.50              # RESEARCH ASSUMPTION
